@@ -1,0 +1,43 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Each screen is the same page; the app picks what to show from the address.
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/me"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/door"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/board"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/join"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    X-Frame-Options = "DENY"
+    # The camera is only for the door's scanner, on this site.
+    Permissions-Policy = "camera=(self), microphone=(), geolocation=()"
+    # Scripts and data only from this site; nothing may embed it.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"

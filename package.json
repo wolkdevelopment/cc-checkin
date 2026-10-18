@@ -1,0 +1,16 @@
+{
+  "name": "cc-checkin",
+  "private": true,
+  "type": "module",
+  "description": "Central Committee digital check-in (beta): PCO credentials, door scanning, live quorum, for Netlify.",
+  "scripts": {
+    "dev": "node dev/server.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
